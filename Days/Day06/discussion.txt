@@ -2,8 +2,7 @@ Total 12 questions.
 
 deleteMiddle(head)
     if head == null or head.next == null 
-        return head 
-    
+        return head     
     slow = head 
     fast = head 
     prev = null 
@@ -14,5 +13,86 @@ deleteMiddle(head)
     prev.next = slow.next 
     return head 
 
+https://github.com/gmaheswaranmca/vce_mtd_g2b4_jun26
+5
+1 2 3 4 5
 
-    
+function oddEvenList(head)
+    if head == null or head.next == null
+        return head
+    odd = head
+    even = head.next
+    evenHead = even
+    while even != null and even.next != null
+        odd.next = even.next
+        odd = odd.next
+        even.next = odd.next
+        even = even.next
+    odd.next = evenHead
+    return head
+
+
+Find the middle using fast and slow pointers, reverse the second half, then compute maximum pair sums.
+6
+1 2 3 4 5 6
+function pairSum(head)
+    slow=head
+    fast=head
+    while fast!=null and fast.next!=null
+        slow=slow.next
+        fast=fast.next.next
+    prev=null
+    current=slow
+    while current!=null
+        nextNode=current.next
+        current.next=prev
+        prev=current
+        current=nextNode
+    first=head
+    second=prev
+    maxSum=0
+    while second!=null
+        maxSum=max(maxSum,first.val+second.val)
+        first=first.next
+        second=second.next
+    return maxSum
+
+
+    function solve(l1, l2)
+    if l1 is null then return l2
+    if l2 is null then return l1
+    create dummy node with value 0
+    set current = dummy
+    while l1 is not null and l2 is not null
+        if l1.val <= l2.val
+            set current.next = l1
+            set l1 = l1.next
+        else
+            set current.next = l2
+            set l2 = l2.next
+        set current = current.next
+    if l1 is not null then set current.next = l1
+    if l2 is not null then set current.next = l2
+    return dummy.next
+
+
+
+
+  function addTwoNumbers(l1, l2)
+    create dummy = new ListNode(0)
+    set tail = dummy
+    set carry = 0
+    while l1 != null OR l2 != null OR carry != 0
+        set v1 = (l1 != null) ? l1.val : 0
+        set v2 = (l2 != null) ? l2.val : 0
+        set sum = v1 + v2 + carry
+        set carry = sum / 10
+        set digit = sum % 10
+        set tail.next = new ListNode(digit)
+        set tail = tail.next
+        if l1 != null then set l1 = l1.next
+        if l2 != null then set l2 = l2.next
+    if carry > 0 
+        tail.next = new ListNode(digit)
+        tail = tail.next
+    return dummy.next  
