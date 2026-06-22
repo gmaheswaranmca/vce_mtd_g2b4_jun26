@@ -1,0 +1,18 @@
+Total 12 questions. 
+
+deleteMiddle(head)
+    if head == null or head.next == null 
+        return head 
+    
+    slow = head 
+    fast = head 
+    prev = null 
+    while fast != null and fast.next != null 
+        prev = slow 
+        slow = slow.next 
+        fast = fast.next.next 
+    prev.next = slow.next 
+    return head 
+
+
+    

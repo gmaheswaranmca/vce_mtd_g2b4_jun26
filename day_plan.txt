@@ -1,0 +1,17 @@
+Day 5 - Linked List - Implementation Practice Questions on SLL 
+Day 6/7 - Linked List - Interview Coding Questions
+        - Stack / Queue - Interview Coding Questions
+Day 7/8 - Two Pointers, Sliding Window, Prefix Sum, Hashing based 
+          Interview Coding Questions 
+Day 8 - To Plan 
+Day 9 - To Plan
+Day 10 - To Plan
+Day 11 - To Plan
+
+Interview Coding Questions on
+    Recursion and Backtracking
+    Binary Tree
+    BST 
+    Graph BFS / DFS / Topological Sorting
+    Dynamic Programming and Greedy Technique 
+     
