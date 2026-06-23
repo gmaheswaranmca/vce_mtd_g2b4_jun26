@@ -253,8 +253,8 @@ while i < length(s) and j < length(t)
 return i == length(s)
 ---
 ===
-015	1456	Maximum Number of Vowels in a Substring of Given | 
-Length	Maximum vowels in window size k.
+015	1456	Maximum Number of Vowels in a Substring of Given Length	
+Maximum vowels in window size k.
 ---
 Input: s="abciiidef", k=3
 Output: 3
