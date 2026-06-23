@@ -96,3 +96,20 @@ function pairSum(head)
         tail.next = new ListNode(digit)
         tail = tail.next
     return dummy.next  
+
+
+
+function copyRandomList(head)
+    if head == null
+        return null
+    map = empty hash map
+    curr = head
+    while curr != null
+        map[curr] = new Node(curr.val)
+        curr = curr.next
+    curr = head
+    while curr != null
+        map[curr].next = map.get(curr.next, null)
+        map[curr].random = map.get(curr.random, null)
+        curr = curr.next
+    return map[head]

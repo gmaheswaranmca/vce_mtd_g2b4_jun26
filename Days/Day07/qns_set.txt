@@ -1,0 +1,59 @@
+010	LC283	Move Zeroes	
+Move all zeroes to end while maintaining order.	
+[0,1,0,3,12]	[1,3,12,0,0]	
+Slow-fast pointer
+
+010	LC283	Move Zeroes	
+Move all zeroes to end while maintaining order.	
+[0,1,0,3,12]	[1,3,12,0,0]	
+Partition array into non-zero and zero parts
+---
+013	LC1679	
+Max Number of K-Sum Pairs	
+Count maximum pairs summing to k.	
+[1,2,3,4], k=5	2	
+Sort + two pointers.
+
+013	LC1679	
+Max Number of K-Sum Pairs	
+Count maximum pairs summing to k.	
+[1,2,3,4], k=5	2	
+Hash Map Frequency: 
+Store counts of numbers and search for k-num.
+---
+012	LC11	Container With Most Water	
+Find maximum water container.	
+[1,8,6,2,5,4,8,3,7]	49	
+Two pointers from both ends.
+---
+E E M
+---
+011	LC392	
+Is Subsequence	
+Check if one string is subsequence of another.	
+s="abc", t="ahbgdc"	true	
+Move pointers through both strings.
+---
+015	LC1456	
+Maximum Number of Vowels in a Substring of Given Length	
+Maximum vowels in window size k.	
+"abciiidef", k=3	3	
+Sliding window vowel count.
+---
+018	LC724	Find Pivot Index	
+Find index where left sum equals right sum.	
+[1,7,3,6,5,6]	3	
+Total sum and running sum.
+---
+
+010	LC283
+013	LC1679
+012	LC11
+011	LC392
+015	LC1456
+018	LC724
+
+2	LC27	Remove Element	| Remove all occurrences of val in-place.	nums=[3,2,2,3], val=3	2, [2,2]	Two pointers overwrite unwanted values.
+31	LC3	Longest Substring Without Repeating Characters	Find the length of the longest substring without repeating characters.	s="abcabcbb"	3	Maintain a window with unique characters using a HashSet/HashMap.
+3	26	Remove Duplicates from Sorted Array	| Keep only unique values in sorted array.	[1,1,2]	2, [1,2]	Slow-fast pointers.
+13	238	Product of Array Except Self |	Product except current index.	[1,2,3,4]	[24,12,8,6]	Prefix and suffix products.
