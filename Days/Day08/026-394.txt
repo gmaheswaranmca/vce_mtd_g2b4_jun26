@@ -1,0 +1,108 @@
+026 LC394
+Decode String
+...
+
+Input: s="3[a]2[bc]" Output: "aaabcbc"
+numStk=[], striStk=[], num=0, stri="" 
+----------------------------------------------
+ch  is
+    digit?->num=num*10+(ch-'0)
+    [?->push(num), push(stri), num=0, stri=""
+    ]?->prevNum=pop, prevStri=pop,
+        stri=prevStri+repeat(stri,prevNum times)
+    else->stri=stri+ch
+----------------------------------------------
+3[a]2[bc]
+3   num=0*10+3=3
+[   numStk=[3], striStk=[""], num=0, stri=""
+a   stri="a"
+]   prevNum=3,numStk=[],prevStri="",striStk=[]
+    stri=""+("a"*3)=aaa
+2   num=0*10+2=2
+[   numStk=[2], striStk=[aaa], num=0, stri=""
+b   stri="b"
+c   stri="bc"
+]   prevNum=2,numStk=[],prevStri="",striStk=[],
+    stri="aaa"+("bc"*2)="aaabcbc"
+stop 
+answer="aaabcbc"
+----------------------------------------------
+...
+
+Input: s="3[a2[c]]" Output: "accaccacc"
+numStk=[], striStk=[], num=0, stri="" 
+----------------------------------------------
+ch  is
+    digit?->num=num*10+(ch-'0)
+    [?->push(num), push(stri), num=0, stri=""
+    ]?->prevNum=pop, prevStri=pop,
+        stri=prevStri+repeat(stri,prevNum times)
+    else->stri=stri+ch
+----------------------------------------------
+3[a2[c]]
+3   num=3
+[   numStk=[3], striStk=[""], num=0, stri=""
+a   stri="a"
+2   num=2
+[   numStk=[3,2], striStk=["","a"], num=0, stri=""
+c   stri="c"
+]   prevNum=2, numStk=[3], prevStri="a", striStk=[""]
+    stri="a"+("c"*2)="acc"
+]   prevNum=3, numStk=[], prevStri="", striStk=[]
+    stri=""+("acc"*3)="accaccacc"
+stop 
+answer="accaccacc"
+----------------------------------------------
+
+...
+Input: s="2[abc]3[cd]ef" Output: "abcabccdcdcdef"
+numStk=[], striStk=[], num=0, stri="" 
+----------------------------------------------
+ch  is
+    digit?->num=num*10+(ch-'0)
+    [?->push(num), push(stri), num=0, stri=""
+    ]?->prevNum=pop, prevStri=pop,
+        stri=prevStri+repeat(stri,prevNum times)
+    else->stri=stri+ch
+----------------------------------------------
+"2[abc]3[cd]ef"
+2   num=2
+[   numStk=[2], striStk=[""], num=0, stri=""
+a   stri="a"
+b   stri="ab"
+c   stri="abc"
+]   prevNum=2, numStk=[], prevStri="", striStk=[]
+    stri=""+("abc"*2)="abcabc"
+3   num=3
+[   numStk=[3], striStk=["abcabc"], num=0, stri=""
+c   stri="c"
+d   stri="cd"
+]   prevNum=3, numStk=[], prevStri="abcabc", striStk=[]
+    stri="abcabc"+("cd"*3)="abcabccdcdcd"
+e   stri="abcabccdcdcde"
+f   stri="abcabccdcdcdef"
+stop 
+answer="abcabccdcdcdef"
+----------------------------------------------
+
+
+function decodeString(s)
+    numStk=emptyStack(), striStk=emptyStack()
+    stri="", num=0
+    for each ch in s
+        if isDigit(ch)
+            num=num*10+(ch-'0')
+        else if ch=='['
+            numStk.push(num), striStk.push(stri)
+            num=0, stri=""
+        else if ch==']'
+            prevNum=numStk.pop(), prevStri=striStk.pop() 
+            stri=prevStri+repeat(stri,prevNum)
+        else
+            stri=stri+ch
+    return stri
+
+...
+Complexity: Time=O(n+m), Space=O(n)
+n=length of input string
+m=length of decoded output
