@@ -1,14 +1,3 @@
-Interview Questions on Stack
-025	735	Asteroid Collision	Simulate asteroid collisions.	[5,10,-5]	[5,10]	Stack.
-026	394	Decode String	Decode nested encoded string.	"3[a2[c]]"	"accaccacc"	Stack for nested patterns.
-55	150	Evaluate Reverse Polish Notation	Evaluate postfix expression.	["2","1","+","3","*"]	9	Push operands, compute on operators.
-
-M M M M 
-
-
-LC232. [E] Implement Queue using Stacks
-LC622. [M] Design Circular Queue
-
 | Problem       | LeetCode Link                                                                                      |
 | ------------- | -------------------------------------------------------------------------------------------------- |
 | Subsets       | [Subsets (LeetCode 78)](https://leetcode.com/problems/subsets/?utm_source=chatgpt.com)             |
@@ -22,6 +11,3 @@ Subsets
 Permutations
 Combinations
 Sudoku Solver are in campus track as well.
-
-
-"10","6","9","3","+","-11","*","/","*","17","+","5","+"
