@@ -205,16 +205,12 @@ Insert left.
 
 ```text
 Insert(root,key)
-
 IF root == NULL
     Create Node(key)
-
 IF key < root.data
     root.left = Insert(root.left,key)
-
 ELSE IF key > root.data
     root.right = Insert(root.right,key)
-
 RETURN root
 ```
 
