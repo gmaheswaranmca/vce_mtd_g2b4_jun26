@@ -11,3 +11,6 @@ Subsets
 Permutations
 Combinations
 Sudoku Solver are in campus track as well.
+
+
+94, 144, 145, 102
