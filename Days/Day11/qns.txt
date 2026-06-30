@@ -68,3 +68,24 @@ dfs(city)
         if isConnected[city][neig] == 1
            and !visited[neig]
            dfs(neig)
+----------------------
+
+Build graph
+Build indegree array
+Queue all nodes with indegree 0
+count = 0
+WHILE queue not empty
+    node = queue.dequeue()
+    count++
+    FOR each neighbor
+        indegree[neighbor]--
+        IF indegree[neighbor] == 0
+            queue.enqueue(neighbour)
+IF count == numCourses
+    RETURN TRUE
+ELSE
+    RETURN FALSE
+----------------------
+Solve
+    108
+    15
