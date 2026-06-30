@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>037&period; Leaf-Similar Trees</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:true,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<h2 id="037-leaf-similar-trees">037. Leaf-Similar Trees</h2>
+<p><strong>Difficulty:</strong> Easy</p>
+<h3 id="description">Description</h3>
+<p>Consider all the leaves of a binary tree, from left to right.</p>
+<p>The values of those leaves form a leaf value sequence.</p>
+<p>Two binary trees are considered leaf-similar if their leaf value sequences are identical.</p>
+<p>Return <code>true</code> if the two given trees are leaf-similar, otherwise return <code>false</code>.</p>
+<hr>
+<h3 id="examples">Examples</h3>
+<pre><code class="language-text">Input:
+root1=[3,5,1,6,2,9,8,null,null,7,4]
+root2=[3,5,1,6,7,4,2,null,null,null,null,null,null,9,8]
+
+Output:
+true
+
+Explanation:
+Leaf sequence of root1=[6,7,4,9,8]
+Leaf sequence of root2=[6,7,4,9,8]
+
+Both sequences are identical.
+</code></pre>
+<pre><code class="language-text">Input:
+root1=[1,2,3]
+root2=[1,3,2]
+
+Output:
+false
+
+Explanation:
+Leaf sequence of root1=[2,3]
+Leaf sequence of root2=[3,2]
+
+Sequences are different.
+</code></pre>
+<hr>
+<h3 id="constraints">Constraints</h3>
+<pre><code class="language-text">The number of nodes in each tree is in the range [1,200].
+0&lt;=Node.val&lt;=200
+</code></pre>
+<hr>
+<h2 id="idea-one-line">Idea (One Line)</h2>
+<p>Traverse both trees using DFS, collect leaf nodes from left to right, then compare the two leaf sequences.</p>
+<hr>
+<h2 id="pseudocode-dfs-collect-leaves">Pseudocode (DFS Collect Leaves)</h2>
+<pre><code class="language-text">function leafSimilar(root1,root2)
+    leaves1=emptyList()
+    leaves2=emptyList()
+
+    collectLeaves(root1,leaves1)
+    collectLeaves(root2,leaves2)
+
+    return leaves1==leaves2
+
+
+function collectLeaves(node,leaves)
+    if node==null
+        return
+
+    if node.left==null and node.right==null
+        append node.val into leaves
+        return
+
+    collectLeaves(node.left,leaves)
+    collectLeaves(node.right,leaves)
+</code></pre>
+<hr>
+<h2 id="complexity">Complexity</h2>
+<pre><code class="language-text">Time Complexity: O(n+m)
+Space Complexity: O(n+m)
+
+n=nodes in first tree
+m=nodes in second tree
+</code></pre>
+<hr>
+<h2 id="dry-run">Dry Run</h2>
+<h3 id="input">Input</h3>
+<pre><code class="language-text">root1=[3,5,1,6,2,9,8,null,null,7,4]
+
+        3
+       / \
+      5   1
+     / \ / \
+    6  2 9  8
+      / \
+     7   4
+
+
+root2=[3,5,1,6,7,4,2,null,null,null,null,null,null,9,8]
+
+        3
+       / \
+      5   1
+     / \ / \
+    6  7 4  2
+           / \
+          9   8
+</code></pre>
+<h3 id="collect-leaves-for-root1">Collect Leaves for root1</h3>
+<table>
+<thead>
+<tr>
+<th>Visited Node</th>
+<th>Leaf?</th>
+<th>Leaves</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3</td>
+<td>No</td>
+<td>[]</td>
+</tr>
+<tr>
+<td>5</td>
+<td>No</td>
+<td>[]</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Yes</td>
+<td>[6]</td>
+</tr>
+<tr>
+<td>2</td>
+<td>No</td>
+<td>[6]</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Yes</td>
+<td>[6,7]</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Yes</td>
+<td>[6,7,4]</td>
+</tr>
+<tr>
+<td>1</td>
+<td>No</td>
+<td>[6,7,4]</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Yes</td>
+<td>[6,7,4,9]</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Yes</td>
+<td>[6,7,4,9,8]</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="collect-leaves-for-root2">Collect Leaves for root2</h3>
+<table>
+<thead>
+<tr>
+<th>Visited Node</th>
+<th>Leaf?</th>
+<th>Leaves</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3</td>
+<td>No</td>
+<td>[]</td>
+</tr>
+<tr>
+<td>5</td>
+<td>No</td>
+<td>[]</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Yes</td>
+<td>[6]</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Yes</td>
+<td>[6,7]</td>
+</tr>
+<tr>
+<td>1</td>
+<td>No</td>
+<td>[6,7]</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Yes</td>
+<td>[6,7,4]</td>
+</tr>
+<tr>
+<td>2</td>
+<td>No</td>
+<td>[6,7,4]</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Yes</td>
+<td>[6,7,4,9]</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Yes</td>
+<td>[6,7,4,9,8]</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="final-comparison">Final Comparison</h3>
+<table>
+<thead>
+<tr>
+<th>Leaves1</th>
+<th>Leaves2</th>
+<th>Equal?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[6,7,4,9,8]</td>
+<td>[6,7,4,9,8]</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-text">Return true
+</code></pre>
+<hr>
+<h2 id="code-explanation">Code Explanation</h2>
+<pre><code class="language-text">1. Create two empty lists leaves1 and leaves2.
+2. Traverse first tree using DFS.
+3. Whenever a leaf node is found, store its value.
+4. Traverse second tree similarly.
+5. Compare both leaf sequences.
+6. If equal, return true.
+7. Otherwise return false.
+</code></pre>
+<hr>
+<h1 id="other-patterns">Other Patterns</h1>
+<h2 id="1-iterative-dfs-using-stack">1. Iterative DFS Using Stack</h2>
+<h3 id="idea">Idea</h3>
+<p>Use stack to traverse tree and collect leaf nodes.</p>
+<h3 id="pseudocode">Pseudocode</h3>
+<pre><code class="language-text">function leafSimilar(root1,root2)
+    leaves1=getLeaves(root1)
+    leaves2=getLeaves(root2)
+
+    return leaves1==leaves2
+
+
+function getLeaves(root)
+    leaves=emptyList()
+    stack=emptyStack()
+
+    push root into stack
+
+    while stack not empty
+        node=pop stack
+
+        if node.left==null and node.right==null
+            append node.val into leaves
+
+        if node.right!=null
+            push node.right into stack
+
+        if node.left!=null
+            push node.left into stack
+
+    return leaves
+</code></pre>
+<hr>
+<h2 id="2-bfs-level-order">2. BFS Level Order</h2>
+<h3 id="idea-1">Idea</h3>
+<p>Traverse using queue and record leaves from left to right.</p>
+<h3 id="pseudocode-1">Pseudocode</h3>
+<pre><code class="language-text">function leafSimilar(root1,root2)
+    leaves1=getLeaves(root1)
+    leaves2=getLeaves(root2)
+
+    return leaves1==leaves2
+
+
+function getLeaves(root)
+    leaves=emptyList()
+    queue=emptyQueue()
+
+    enqueue root into queue
+
+    while queue not empty
+        node=dequeue queue
+
+        if node.left==null and node.right==null
+            append node.val into leaves
+
+        if node.left!=null
+            enqueue node.left into queue
+
+        if node.right!=null
+            enqueue node.right into queue
+
+    return leaves
+</code></pre>
+<hr>
+<h2 id="3-dfs-generator-style">3. DFS Generator Style</h2>
+<h3 id="idea-2">Idea</h3>
+<p>Generate leaves one by one and compare sequences lazily.</p>
+<h3 id="pseudocode-2">Pseudocode</h3>
+<pre><code class="language-text">function leafSimilar(root1,root2)
+    seq1=getLeafSequence(root1)
+    seq2=getLeafSequence(root2)
+
+    return seq1==seq2
+</code></pre>
+<hr>
+<h1 id="comparison-of-approaches">Comparison of Approaches</h1>
+<table>
+<thead>
+<tr>
+<th>Approach</th>
+<th>Idea</th>
+<th style="text-align:right">Time</th>
+<th style="text-align:right">Space</th>
+<th style="text-align:right">Recommended</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Recursive DFS</td>
+<td>Collect leaves recursively</td>
+<td style="text-align:right">O(n+m)</td>
+<td style="text-align:right">O(n+m)</td>
+<td style="text-align:right">⭐⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>Iterative DFS</td>
+<td>Stack traversal</td>
+<td style="text-align:right">O(n+m)</td>
+<td style="text-align:right">O(n+m)</td>
+<td style="text-align:right">⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>BFS</td>
+<td>Queue traversal</td>
+<td style="text-align:right">O(n+m)</td>
+<td style="text-align:right">O(n+m)</td>
+<td style="text-align:right">⭐⭐⭐</td>
+</tr>
+<tr>
+<td>Generator DFS</td>
+<td>Generate leaves lazily</td>
+<td style="text-align:right">O(n+m)</td>
+<td style="text-align:right">O(h)</td>
+<td style="text-align:right">⭐⭐⭐</td>
+</tr>
+</tbody>
+</table>
+<p>where</p>
+<pre><code class="language-text">n=nodes in first tree
+m=nodes in second tree
+h=height of tree
+</code></pre>
+<hr>
+<h2 id="best-choice">Best Choice</h2>
+<pre><code class="language-text">Interview: Recursive DFS
+
+Reason:
+1. Very simple and intuitive.
+2. Naturally traverses leaves from left to right.
+3. Easy to implement and debug.
+4. Most common solution for LC 872.
+</code></pre>
+
+            
+            
+        </body>
+        </html>

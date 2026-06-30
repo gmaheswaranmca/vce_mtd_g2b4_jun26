@@ -1,0 +1,70 @@
+1971
+547
+207
+----------------------------
+
+validPath(n, edges, source, destination)
+    neighbours = []
+    visited = []
+    for i <- 0 .. n-1
+        visited.add(false)
+        neighbours.add([]) 
+    for v,u in edges 
+        neigbours[v].add(u)
+        neigbours[u].add(v)
+    stk = init stack     
+    stk.push(source)
+    visited[source] = true
+    while stk is not empty
+        v = stk.pop()
+        if v == destination
+            return true 
+        for each neighbour in neigbours[v]
+            if visited[neighbour] == false
+                stk.push(neighbour)
+                visited[neighbour] = true
+    return false 
+
+validPath(n, edges, source, destination)
+    neighbours = []
+  
+
+
+DFS using recursion 
+dfs(v)
+    visited[v] = true
+    if v == destination
+        return true
+    for each neighbour in neigbours[v]
+        if visited[neighbour] == false
+            return dfs(neighbour)
+    return false         
+validPath(n, edges, source, destination)
+    neighbours = []
+    visited = []
+    for i <- 0 .. n-1
+        visited.add(false)
+        neighbours.add([]) 
+    for v,u in edges 
+        neigbours[v].add(u)
+        neigbours[u].add(v)
+    return dfs(source) 
+
+----------------------------------------------
+findCircleNum(isConnected)
+    n = len(isConnected)
+    visited = []
+    for i <- 0 .. n-1
+        visited.add(false) 
+    p = 0
+    for i <- 0..n-1
+        if !visited[i]
+            p++
+            dfs(i)
+    return p
+dfs(city)
+    visited[city] = true 
+    for neig <- 0..n-1
+        if isConnected[city][neig] == 1
+           and !visited[neig]
+           dfs(neig)
